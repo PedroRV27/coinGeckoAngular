@@ -1,0 +1,33 @@
+<div class="container">
+  <div *ngIf="coinDetails">
+    <h2>{{ coinDetails.name }} ({{ coinDetails.symbol }})</h2>
+    <img [src]="coinDetails.image.large" alt="{{ coinDetails.name }} Logo">
+    <p><b>Precio actual en euros:</b> {{ coinDetails?.market_data.current_price.eur }} €</p>
+    <p><b>Precio más alto (24h) en euros:</b> {{ coinDetails?.market_data.high_24h.eur }} €</p>
+    <p><b>Precio más bajo (24h) en euros:</b> {{ coinDetails?.market_data.low_24h.eur }} €</p>
+    <p><b>Volumen total en euros:</b> {{ coinDetails?.market_data.total_volume.eur }} €</p>
+    <p><b>Posición en el mercado:</b> {{ coinDetails?.market_cap_rank }}</p>
+    <p><b>Descripción:</b>
+      <ng-container *ngIf="coinDetails?.description && coinDetails.description.es">
+        <p>{{ coinDetails.description.es.length > 600 ? (coinDetails.description.es | slice:0:600) + '...' : coinDetails.description.es }}</p>
+      </ng-container>
+      
+      <ng-container *ngIf="(!coinDetails?.description?.es && coinDetails?.description?.en)">
+        <p>{{ coinDetails?.description?.en?.length > 600 ? (coinDetails?.description?.en | slice:0:600) + '...' : coinDetails?.description?.en }}</p>
+      </ng-container>
+
+      <ng-container *ngIf="(!coinDetails?.description?.es && !coinDetails?.description?.en)">
+        <p>No hay descripción disponible</p>
+      </ng-container>
+    </p>
+    <div>
+      <p><b>Links relevantes:</b></p>
+      <div class="links">
+        <p><a target="_blank" [href]="cleanHomepageLink(coinDetails?.links.homepage)">Página oficial</a></p>
+        <p><a target="_blank" [href]="cleanHomepageLink(coinDetails?.links.repos_url.github)">GitHub</a></p>
+        <p><a target="_blank" [href]="cleanHomepageLink(coinDetails?.links.blockchain_site)">Blockchain</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>

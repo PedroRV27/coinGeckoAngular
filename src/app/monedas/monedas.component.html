@@ -1,0 +1,7 @@
+<div class="container">
+    <h1>Monedas que sigues</h1>
+    <div *ngFor="let coinDetails of  detallesMonedas" class="d-flex gap-3">
+        <div><img [src]="coinDetails.image.small"></div>
+        <p>{{coinDetails.name}} ({{coinDetails.symbol}})</p>
+        <button (click)="eliminarMoneda(coinDetails.id)">Dejar de seguir</button>
+    </div>

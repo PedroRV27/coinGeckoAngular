@@ -1,0 +1,48 @@
+<div class="container">
+  <input type="text" class="form-control  border-1 my-4 text-center rounded-0" placeholder="Busque aqui su moneda"
+  (keyup)="buscarCoin()"
+  [(ngModel)]="buscarTexto">
+  <table class="table ">
+    <thead>
+      <tr>
+        <td *ngFor="let title of titles">
+          {{ title }}
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coin of filtrarCoin;let i = index" >
+        <td class="text-muted">
+          {{i + 1}}
+        </td>
+        <td>
+        </td>
+        <td>
+          <a [routerLink]="['/detalle-moneda', coin.id]">
+          <img [src]="coin.image" alt="{{coin.name}}" style="width: 2rem;">
+          <span class="ms-3">{{coin.name}}</span>
+          <span class="text-muted text-uppercase ms-2">{{coin.symbol}}</span>
+        </a>
+        </td>
+      
+        <td>
+          €{{coin.current_price.toLocaleString()}}
+        </td>
+        <td [ngClass]="coin.price_change_percentage_24h >0 ? 'text-success': 'text-danger'">
+          {{coin.price_change_percentage_24h}}
+        </td>
+        <td>
+          {{coin.total_volume.toLocaleString()}}
+        </td>
+        <td>
+          <button class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" (click)="seguirMoneda(coin.id)">Seguir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>
+
+
+
+

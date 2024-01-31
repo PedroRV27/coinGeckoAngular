@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "coingecko-fb411": {
+      "hosting": {
+        "proyecto": [
+          "coingecko-fb411"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "coingecko-fb411"
+  }
+}
